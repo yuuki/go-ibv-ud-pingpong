@@ -2,10 +2,29 @@
 
 ## Overview
 
-This is a network diagnostic tool that performs ping/pong using the Infiniband Verbs interface (libibverbs) with the RoCE v2 protocol UD (Unreliable Datagram).
-It is a Go language port of [@https://github.com/linux-rdma/rdma-core/blob/master/libibverbs/examples/ud_pingpong.c](https://github.com/linux-rdma/rdma-core/blob/master/libibverbs/examples/ud_pingpong.c).
+go-rocev2-ud-pingpong is a network diagnostic tool that performs ping/pong tests using the Infiniband Verbs interface (libibverbs) with the RoCE v2 protocol's Unreliable Datagram (UD) transport. This tool is particularly useful for testing and benchmarking RDMA network performance in RoCE v2 environments.
 
-## How to Use
+This project is a Go language implementation of the [ud_pingpong.c](https://github.com/linux-rdma/rdma-core/blob/master/libibverbs/examples/ud_pingpong.c) example from the rdma-core library.
+
+## Prerequisites
+
+- Go 1.24 or later
+- RDMA-capable network interface card supporting RoCE v2
+- rdma-core development packages
+
+## Installation
+
+### From Source
+
+```bash
+git clone https://github.com/yuuki/go-rocev2-ud-pingpong.git
+cd go-rocev2-ud-pingpong
+make extract-binary
+```
+
+## Usage
+
+The tool operates in either server (passive) or client (active) mode:
 
 ```
 Usage: ./go-rocev2-ud-pingpong [options] [servername]
@@ -33,35 +52,33 @@ Usage: ./go-rocev2-ud-pingpong [options] [servername]
         Server hostname or IP address (client mode)
 ```
 
-```shell-session
-# Passive side
-$ ./bin/go-rocev2-ud-pingpong -e -g 0
+### Example Usage
 
-# Active side
-$ ./bin/go-rocev2-ud-pingpong -e -g 0 -servername <passive-side-ip-address>
-```
-
-## How to Build
-
+To run in server mode:
 ```bash
-make extract-binary
+./bin/go-rocev2-ud-pingpong -e -g 0
 ```
 
-## How to Run
-
-### Normal Execution
-
+To run in client mode:
 ```bash
-# After building
-./bin/go-rocev2-ud-pingpong [options]
-
-
-# Or using go run
-go run main.go [options]
+./bin/go-rocev2-ud-pingpong -e -g 0 -servername 192.168.1.100
 ```
-For options, please refer to the tool's help.
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
 This project is licensed under the GPL v2 - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- This project is inspired by and based on the [ud_pingpong.c](https://github.com/linux-rdma/rdma-core/blob/master/libibverbs/examples/ud_pingpong.c) example from the rdma-core library
+- Thanks to the RDMA community for their excellent documentation and examples
