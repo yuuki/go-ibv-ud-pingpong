@@ -1,8 +1,8 @@
-# go-rocev2-ud-pingpong
+# go-ibv-ud-pingpong
 
 ## Overview
 
-go-rocev2-ud-pingpong is a network diagnostic tool that performs ping/pong tests using the Infiniband Verbs interface (libibverbs) with the RoCE v2 protocol's Unreliable Datagram (UD) transport. This tool is particularly useful for testing and benchmarking RDMA network performance in RoCE v2 environments.
+go-ibv-ud-pingpong is a network diagnostic tool that performs ping/pong tests using the Infiniband Verbs interface (libibverbs) with the IB/RoCE protocol's Unreliable Datagram (UD) transport. This tool is particularly useful for testing and benchmarking RDMA network performance.
 
 This project is a Go language implementation of the [ud_pingpong.c](https://github.com/linux-rdma/rdma-core/blob/master/libibverbs/examples/ud_pingpong.c) example from the rdma-core library.
 
